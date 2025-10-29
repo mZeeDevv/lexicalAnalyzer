@@ -1,0 +1,87 @@
+LEXICAL ANALYSIS OUTPUT
+=====================
+
+Headers:
+Identifier: include <iostream>
+Identifier: include <string>
+
+Definitions:
+Identifier: define MAX SIZE = 100
+
+Constants:
+const int DECIMAL = 42
+const int HEX = 0x
+const int OCTAL = 0777
+const float PI = 3.14159
+const double E = 2.e-10
+const char CHAR TEST = 'A'
+const char ESCAPE CHAR = '\n'
+
+Strings:
+std string str1 = "Hello World!"
+std string str2 = "String with escaped quotes"
+std string str3 = "String with \n newline"
+
+Main Function:
+int main()
+
+Variables and Operations:
+int a = 10
+int b = 20
+int sum = a + b
+int diff = a - b
+int mult = a * b
+int div = b / a
+int mod = b % a
+
+Increment/Decrement:
+a++
+b--
+++a
+--b
+
+Compound Assignments:
+a += 5
+b -= 3
+a *= 2
+b /= 4
+a %= 3
+
+Bitwise Operations:
+int bit_and = a & b
+int bit_or = a | b
+int bit_xor = a ^ b
+int bit_not = ~a
+int left_shift = a << 2
+int right_shift = b >> 1
+
+Logical Operations:
+bool logical_and = (a > 0 && b < 30)
+bool logical_or = (a < 0 || b > 30)
+bool logical_not = !logical_and
+
+Comparison Operations:
+bool equal = (a == b)
+bool not_equal = (a != b)
+bool less = (a < b)
+bool greater = (a > b)
+bool less_equal = (a <= b)
+bool greater_equal = (a >= b)
+
+Pointer Operations:
+int *ptr = &a
+int val = *ptr
+
+Array Operations:
+int arr[5] = {1,2,3,4,5}
+int first = arr[0]
+
+Structure:
+struct Point {
+    int x
+    int y
+}
+point.x = 10
+
+Program End:
+return 0

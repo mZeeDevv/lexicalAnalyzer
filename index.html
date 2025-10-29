@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Lexical Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 C++ Lexical Analyzer</h1>
+            <p>Analyze C++ source code and identify tokens, keywords, operators, and more!</p>
+        </header>
+
+        <div class="main-content">
+            <div class="input-section">
+                <h2>📝 Input C++ Code</h2>
+                <textarea 
+                    id="cppInput" 
+                    placeholder="Enter your C++ code here...
+Example:
+#include <iostream>
+int main() {
+    int x = 42;
+    if (x > 0) {
+        std::cout << &quot;Hello World!&quot; << std::endl;
+    }
+    return 0;
+}"></textarea>
+                <div class="controls">
+                    <button id="analyzeBtn" class="analyze-btn">🚀 Analyze Code</button>
+                    <button id="clearBtn" class="clear-btn">🗑️ Clear</button>
+                    <button id="loadSampleBtn" class="sample-btn">📋 Load Sample</button>
+                </div>
+            </div>
+
+            <div class="output-section">
+                <h2>📊 Analysis Results</h2>
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="tokens">Tokens</button>
+                    <button class="tab-btn" data-tab="processed">Processed Code</button>
+                    <button class="tab-btn" data-tab="statistics">Statistics</button>
+                </div>
+                
+                <div id="tokensTab" class="tab-content active">
+                    <div id="tokenOutput" class="output-display">
+                        <div class="placeholder">Click "Analyze Code" to see token analysis</div>
+                        
+                        <!-- Token Categories will be populated by JavaScript -->
+                        <div id="tokenCategories" class="token-categories" style="display: none;">
+                            <div class="token-category" id="keywordsCategory">
+                                <h3 class="category-title">🔑 Keywords <span class="token-count">(0)</span></h3>
+                                <table class="token-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Token</th>
+                                            <th>Line Number</th>
+                                            <th>Occurrences</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="keywordsBody">
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="token-category" id="identifiersCategory">
+                                <h3 class="category-title">🏷️ Identifiers <span class="token-count">(0)</span></h3>
+                                <table class="token-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Token</th>
+                                            <th>Line Numbers</th>
+                                            <th>Occurrences</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="identifiersBody">
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="token-category" id="operatorsCategory">
+                                <h3 class="category-title">⚡ Operators <span class="token-count">(0)</span></h3>
+                                <table class="token-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Token</th>
+                                            <th>Line Numbers</th>
+                                            <th>Occurrences</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="operatorsBody">
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="token-category" id="constantsCategory">
+                                <h3 class="category-title">🔢 Constants <span class="token-count">(0)</span></h3>
+                                <table class="token-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Token</th>
+                                            <th>Type</th>
+                                            <th>Line Number</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="constantsBody">
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="token-category" id="stringsCategory">
+                                <h3 class="category-title">📝 String & Character Literals <span class="token-count">(0)</span></h3>
+                                <table class="token-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Token</th>
+                                            <th>Type</th>
+                                            <th>Line Number</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="stringsBody">
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="token-category" id="preprocessorCategory">
+                                <h3 class="category-title">⚙️ Preprocessor Directives <span class="token-count">(0)</span></h3>
+                                <table class="token-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Directive</th>
+                                            <th>Line Number</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="preprocessorBody">
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="token-category" id="punctuationCategory">
+                                <h3 class="category-title">🔣 Punctuation <span class="token-count">(0)</span></h3>
+                                <table class="token-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Token</th>
+                                            <th>Line Numbers</th>
+                                            <th>Occurrences</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="punctuationBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="processedTab" class="tab-content">
+                    <div id="processedOutput" class="output-display">
+                        <div class="placeholder">Processed code will appear here</div>
+                    </div>
+                </div>
+                
+                <div id="statisticsTab" class="tab-content">
+                    <div id="statisticsOutput" class="output-display">
+                        <div class="placeholder">Code statistics will appear here</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Built for Compiler Assignment - Lexical Analysis Phase</p>
+        </footer>
+    </div>
+
+    <script src="lexer.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
